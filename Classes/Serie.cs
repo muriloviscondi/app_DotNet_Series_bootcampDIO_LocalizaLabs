@@ -24,14 +24,20 @@ namespace app_DotNet_Series_bootcampDIO_LocalizaLabs
 
     private bool Excluded { get; set; }
 
+
+    public int idResponse()
+    {
+      return this.Id;
+    }
+
     public string titleResponse()
     {
       return this.Title;
     }
 
-    public int idResponse()
+     public bool ExcludedResponse()
     {
-      return this.Id;
+      return this.Excluded;
     }
 
     public void Exclude() {
@@ -45,6 +51,7 @@ namespace app_DotNet_Series_bootcampDIO_LocalizaLabs
       newString += $"Descrição: {this.Description} {Environment.NewLine}";
       newString += $"Gênero: {this.Genre} {Environment.NewLine}";
       newString += $"Ano: {this.Year} {Environment.NewLine}";
+      newString += $"Excluido: {this.Excluded} {Environment.NewLine}";
 
       return newString;
     }

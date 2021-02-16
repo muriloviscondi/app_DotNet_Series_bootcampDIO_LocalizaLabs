@@ -58,7 +58,9 @@ namespace app_DotNet_Series_bootcampDIO_LocalizaLabs
 
       foreach (var item in list)
       {
-        Console.WriteLine($"#ID {item.idResponse()}: - {item.titleResponse()}");
+        var excluded = item.ExcludedResponse() == true ? "Excluído" : "";
+
+        Console.WriteLine($"#ID {item.idResponse()}: - {item.titleResponse()} {excluded}");
       }
     }
 
@@ -102,12 +104,46 @@ namespace app_DotNet_Series_bootcampDIO_LocalizaLabs
 
     private static void AlterSerie()
     {
-      throw new NotImplementedException();
+      Console.WriteLine("Atualizar série");
+
+      Console.WriteLine("Digite o id da série");
+      int seriesId = int.Parse(Console.ReadLine());
+
+      foreach (int i in Enum.GetValues(typeof(Genre)))
+      {
+        Console.WriteLine($"{i} - {Enum.GetName(typeof(Genre), i)}");
+      }
+
+      Console.WriteLine("Digite o gênero entre as opções acima: ");
+      int genre = int.Parse(Console.ReadLine());
+
+      Console.WriteLine("Digite o título da série: ");
+      string title = Console.ReadLine();
+
+      Console.WriteLine("Digite a descrição da série: ");
+      string description = Console.ReadLine();
+
+      Console.WriteLine("Digite o ano da série: ");
+      int year = int.Parse(Console.ReadLine());
+
+      var alterSerie = new Serie
+      (
+        id: seriesId,
+        title: title,
+        description: description,
+        genre: (Genre)genre,
+        year: year
+      );
+
+      _repository.Alter(seriesId, alterSerie);
     }
 
     private static void DeleteSerie()
     {
-      throw new NotImplementedException();
+      Console.WriteLine("Digite o id da série");
+      int seriesId = int.Parse(Console.ReadLine());
+
+      _repository.Delete(seriesId);
     }
 
     private static string GetUserOption()
